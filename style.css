@@ -11,9 +11,9 @@ body {
 }
 
 #form {
-  padding: 1rem;
+  padding: 0.5rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.13);
 }
 
@@ -44,18 +44,17 @@ body {
   width: 100%;
 }
 
-section {
+.container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.info_movie {
-  color: #000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 1rem 1rem;
+.info_movie{
+display: flex;
+justify-content: space-between;
+padding: 1rem;
+padding: 0.5rem 1rem 1rem;
   letter-spacing: 0.5px;
 }
 
@@ -64,12 +63,17 @@ section {
 }
 
 .info_movie span {
-  background-color: rgb(255, 255, 255);
-  padding: 0.25rem 0.5rem;
-  border-radius: 3px;
+  background-color: #000;
+  padding: 0.5em;
+  text-align: center;
   font-weight: bold;
-}
+} 
 
+p{
+  padding-left: 25px;
+  display: flex;
+  justify-items: flex-start;
+}
 .info_movie span.green {
   color: lightgreen;
 }

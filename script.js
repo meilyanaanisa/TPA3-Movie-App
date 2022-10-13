@@ -18,6 +18,7 @@ function getMovies (url) {
 }
 
 function showMovies(data){
+    document.querySelector('.container').innerHTML = ""
     data.results.forEach(movie =>{
         const movie1 = document.createElement('div')
         movie1.classList.add('movie')
@@ -26,8 +27,8 @@ function showMovies(data){
         <div class="info_movie">
           <h3>${movie.title}</h3>
           <span class="${getColor(movie.vote_average)}">${movie.vote_average}</span>
-          <p>${movie.release_date}</p>
         </div>
+        <p>${movie.release_date}</p>
         `
         document.querySelector('.container').appendChild (movie1)
   })
@@ -53,3 +54,4 @@ form.addEventListener('submit', (event) => {
     }
 
 })
+
