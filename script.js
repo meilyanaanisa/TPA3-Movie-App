@@ -1,13 +1,55 @@
-let containerApi = document.getElementById("list-api");
+const KEY = '5d9b2bc413a6a19fd56b277573b6096a';
+const API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${KEY}&page=1&sort_by=popularity.desc`;
+const search_URL = `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&page=1&sort_by=popularity.desc`;
 
-let getDataApi = async () => {
-  let response = await fetch("https://api.themoviedb.org/3/discover/movie?&api_key=88ef544735216b8d23c937d6adbce2eb");
-  let dataApi = await response.json();
+const container = document.getElementsByClassName('container')
+const form = document.getElementById('form')
+const search = document.getElementById('search')
 
-  dataApi.forEach((item) => {
-    console.log(item);
-    containerApi.innerHTML += `<h3>${item}</h3>`;
-  });
-};
+getMovies(API_URL)
 
-getDataApi();
+function getMovies (url) {
+    fetch (url)
+    .then(res => res.json())
+    .then(data => {
+     showMovies(data)
+     console.log(data)
+    })
+}
+
+function showMovies(data){
+    data.results.forEach(movie =>{
+        const movie1 = document.createElement('div')
+        movie1.classList.add('movie')
+        movie1.innerHTML =`
+        <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="Poster Movie" />
+        <div class="info_movie">
+          <h3>${movie.title}</h3>
+          <span class="${getColor(movie.vote_average)}">${movie.vote_average}</span>
+          <p>${movie.release_date}</p>
+        </div>
+        `
+        document.querySelector('.container').appendChild (movie1)
+  })
+}
+
+function getColor(vote){
+    if(vote >= 8){
+        return 'green'
+    }else if(vote >= 5){
+       return 'orange'
+    }else{
+        return 'red'
+    }
+}
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault ()
+
+    const searchTerm = search.value;
+
+    if(searchTerm){
+        getMovies(search_URL+'&query='+searchTerm)
+    }
+
+})
